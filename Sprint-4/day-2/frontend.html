@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 20px;
+      }
+      p + img {
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Frontend</h1>
+    <div id="container"></div>
+  </body>
+</html>
+
+<script>
+  var investorsArr = JSON.parse(localStorage.getItem("investorsData"));
+  console.log(investorsArr);
+  displaydata(investorsArr);
+  var displayArr=JSON.parse(localStorage.getItem("view"))||[];
+  function displaydata(data){
+    document.querySelector("#container").innerHTML ="";
+    data.forEach(function (elem){
+    var tr=document.createElement("tr");
+
+    var td1=document.createElement("td");
+    var avatar=document.createElement("img");
+    // avatar.setAttribute("src",investorImg);
+    // td1.append(avatar);
+    td1.innerText=elem.investorImg;
+
+      
+    var td2=document.createElement("p");
+    td2.innerText=elem.investorName;
+
+    var td3=document.createElement("p");
+    td3.innerText=elem.investorRole;
+
+    var td4=document.createElement("p");
+    // var investor_logo=document.createElement("img");
+    // investor_logo.setAttribute("src",investorCompanyLogo);
+    // td4.append(investor_logo);
+    td4.innerText=elem.investorCompanyLogo;
+
+    tr.append(td1,td2,td3,td4);
+
+    document.querySelector("#container").append(tr);
+    });
+  }
+
+  
+  
+
+</script>
